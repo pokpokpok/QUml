@@ -145,7 +145,7 @@ void MainWindow::createNewDiagram(DiagramsEnum type)
 {
     switch(type)
     {
-    case NONE:
+    case ABSTRACT:
         break;
     case USECASE:
         DiagramViewer *newView = new DiagramViewer(type, this);
@@ -153,7 +153,7 @@ void MainWindow::createNewDiagram(DiagramsEnum type)
         mTabBar->setCurrentIndex(mTabBar->count()-1);
         mUseCaseToolBar = new UseCaseToolBar(tr("&Items"), this);
         this->addToolBar(Qt::LeftToolBarArea, mUseCaseToolBar);
-        connect(mUseCaseToolBar, SIGNAL(sendItemState(QString)), newView, SLOT(setDiagramState(QString)));
+        connect(mUseCaseToolBar, SIGNAL(sendSceneState(QString)), newView, SLOT(setSceneState(QString)));
         break;
     }
 }

@@ -1,14 +1,14 @@
-#ifndef ITEMEVENTHANDLER_H
-#define ITEMEVENTHANDLER_H
+#ifndef SELECTEVENTHANDLER_H
+#define SELECTEVENTHANDLER_H
 
 #include "event_handler/abstracteventhandler.h"
 
-class ItemEventHandler : public AbstractEventHandler
+class SelectEventHandler : public AbstractEventHandler
 {
     Q_OBJECT
 public:
-    explicit ItemEventHandler(DiagramScene *parent = 0);
-    ~ItemEventHandler();
+    explicit SelectEventHandler(DiagramScene *parent = 0);
+    ~SelectEventHandler();
 
 public slots:
     void mouseDoubleClick(QGraphicsSceneMouseEvent *event);
@@ -16,11 +16,8 @@ public slots:
     void mouseMove(QGraphicsSceneMouseEvent *event);
     void mouseRelease(QGraphicsSceneMouseEvent *event);
 
-private:
-
-
 signals:
 
 };
 
-#endif // ITEMEVENTHANDLER_H
+#endif // SELECTEVENTHANDLER_H

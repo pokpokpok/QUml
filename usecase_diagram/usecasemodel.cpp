@@ -55,7 +55,7 @@ void UseCaseModel::loadModel(const QString &fileName)
         reader.readNextStartElement();
         if (reader.isStartElement())
         {
-            if(reader.name() == "ACTOR" || reader.name() == "USECASE")
+            if(reader.name() == "I_ACTOR" || reader.name() == "I_USECASE")
             {
                 emit addNewItem(reader.name().toString(),
                                 reader.attributes()[0].value().toString(),

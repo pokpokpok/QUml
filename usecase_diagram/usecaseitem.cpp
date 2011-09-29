@@ -26,7 +26,7 @@ void UseCaseItem::paint(QPainter *painter, const QStyleOptionGraphicsItem *optio
     QGraphicsPolygonItem::paint(painter, option, widget);
     painter->setBrush(QBrush(Qt::white));
 
-    if(mItemType == "ACTOR")
+    if(mItemType == "I_ACTOR")
     {
         painter->setPen(QPen(Qt::black/*, 1.5*/));
 
@@ -49,7 +49,7 @@ void UseCaseItem::paint(QPainter *painter, const QStyleOptionGraphicsItem *optio
         painter->drawEllipse(QPointF(mItemRectF.width() / 2, mItemRectF.height() / 6),
                              mItemRectF.width() / 4, mItemRectF.width() / 4);
     }
-    else if(mItemType == "USECASE")
+    else if(mItemType == "I_USECASE")
     {
         painter->setPen(QPen(Qt::black));
         painter->setRenderHint(QPainter::Antialiasing, true);
@@ -61,7 +61,7 @@ void UseCaseItem::paint(QPainter *painter, const QStyleOptionGraphicsItem *optio
 
 void UseCaseItem::initializeItemMembers()
 {
-    if(mItemType == "ACTOR")
+    if(mItemType == "I_ACTOR")
     {
         mItemRectF = QRectF(0, 0, 50, 75);
         setPen(Qt::NoPen);
@@ -69,7 +69,7 @@ void UseCaseItem::initializeItemMembers()
         if(mItemName.isEmpty())
             mItemName = "Actor";
     }
-    else if(mItemType == "USECASE")
+    else if(mItemType == "I_USECASE")
     {
         setPen(Qt::NoPen);
 
@@ -85,7 +85,7 @@ void UseCaseItem::initializeItemMembers()
 void UseCaseItem::paintItemMembers()
 {
     mTextNameItem->setPlainText(mItemName);
-    if(mItemType == "ACTOR")
+    if(mItemType == "I_ACTOR")
         mTextNameItem->setPos((mItemRectF.width() - mTextNameItem->boundingRect().width())/2,
                               - mTextNameItem->boundingRect().height());
     else

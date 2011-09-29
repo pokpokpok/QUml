@@ -1,10 +1,21 @@
 #ifndef QUMLENUMS_H
 #define QUMLENUMS_H
 
-enum DiagramsEnum
+typedef enum
 {
-    NONE,
+    ABSTRACT,
     USECASE
-};
+} DiagramsEnum;
+
+typedef enum
+{
+    NONE = 0,
+    SELECT,
+    ITEM,
+    RELATION,
+
+    // Don't use it. (Used to know count of all scene states)
+    COUNT
+}  SceneState;
 
 #endif // QUMLENUMS_H

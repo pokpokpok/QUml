@@ -15,7 +15,7 @@ private:
     virtual void initializeBarElements()=0;
 
 signals:
-    void sendItemState(const QString &itemState);
+    void sendSceneState(const QString &itemState);
 
 public slots:
 

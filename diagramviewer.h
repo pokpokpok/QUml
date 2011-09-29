@@ -21,7 +21,7 @@ private:
 signals:
 
 public slots:
-    void setDiagramState(const QString &state);
+    void setSceneState(const QString &state);
     void saveDiagramSceneToFile(const QString &fileName);
     void openDiagramSceneFromFile(const QString &fileName);
 

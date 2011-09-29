@@ -9,6 +9,10 @@
 #include <QtGui/QGraphicsScene>
 #include <QtGui/QGraphicsSceneMouseEvent>
 
+QT_BEGIN_NAMESPACE
+class AbstractEventHandler;
+QT_END_NAMESPACE
+
 class DiagramScene : public QGraphicsScene
 {
     Q_OBJECT
@@ -17,24 +21,29 @@ public:
     explicit DiagramScene(QObject *parent = 0);
     ~DiagramScene();
 
-    inline void setItemState(const QString &newItemState){ mItemState = newItemState; }
+    void setSceneState(const QString &newSceneState);
+    inline QString getSceneState() { return mSceneState; }
     inline void setDiagType(const DiagramsEnum &newDiagType){ mDiagType = newDiagType; }
     inline DiagramsEnum getDiagType() { return mDiagType; }
     void saveSceneToFile(const QString &fileName);
     void openSceneFromFile(const QString &fileName);
 
 private:
-    QString mItemState;
+    QString mSceneState;
+    DiagramsEnum mDiagType;
     QList<AbstractItem*> mItemsPtrList;
     int mCountItemsId;
-    DiagramsEnum mDiagType;
+    QVector<AbstractEventHandler*> mSceneEventHandlers;
+    AbstractEventHandler *mEventHandler;
 
 signals:
 
-private slots:
-    void deleteItem(int itemIdToDel);
+public slots:
     void addNewItem(const QString &newItemType, const QString &newItemName, const QPointF &newItemPos);
     void addNewRelation(const QString &type);
+
+private slots:
+    void deleteItem(int itemIdToDel);
 
 protected:
     void mouseDoubleClickEvent(QGraphicsSceneMouseEvent *event);

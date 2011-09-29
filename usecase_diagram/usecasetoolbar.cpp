@@ -50,12 +50,12 @@ void UseCaseToolBar::sendActorButtonState(bool flag)
     {
         mActorButton->setChecked(true);
         mUseCaseButton->setChecked(false);
-        emit sendItemState("ACTOR");
+        emit sendSceneState("I_ACTOR");
     }
     else
     {
         mActorButton->setChecked(false);
-        emit sendItemState("NONE");
+        emit sendSceneState("S_NONE");
     }
 }
 
@@ -65,11 +65,11 @@ void UseCaseToolBar::sendUseCaseButtonState(bool flag)
     {
         mActorButton->setChecked(false);
         mUseCaseButton->setChecked(true);
-        emit sendItemState("USECASE");
+        emit sendSceneState("I_USECASE");
     }
     else
     {
         mUseCaseButton->setChecked(false);
-        emit sendItemState("NONE");
+        emit sendSceneState("S_NONE");
     }
 }

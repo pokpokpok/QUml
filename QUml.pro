@@ -23,7 +23,9 @@ SOURCES += main.cpp\
     diagramviewer.cpp \
     diagramscene.cpp \
     event_handler/abstracteventhandler.cpp \
-    event_handler/itemeventhandler.cpp
+    event_handler/itemeventhandler.cpp \
+    event_handler/selecteventhandler.cpp \
+    event_handler/relationeventhandler.cpp
 
 HEADERS  += mainwindow.h \
     abstract_diagram/abstractitem.h \
@@ -38,7 +40,13 @@ HEADERS  += mainwindow.h \
     qumlenums.h \
     diagramscene.h \
     event_handler/abstracteventhandler.h \
-    event_handler/itemeventhandler.h
+    event_handler/itemeventhandler.h \
+    event_handler/selecteventhandler.h \
+    event_handler/relationeventhandler.h
+
+
+
+
 
 
 

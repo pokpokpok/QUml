@@ -1,9 +1,19 @@
 #include "diagramscene.h"
+#include "event_handler/abstracteventhandler.h"
+#include "event_handler/itemeventhandler.h"
+#include "event_handler/selecteventhandler.h"
+#include "event_handler/relationeventhandler.h"
 
 DiagramScene::DiagramScene(QObject *parent) :
-    QGraphicsScene(parent), mCountItemsId(0), mItemState("NONE")
+    QGraphicsScene(parent), mCountItemsId(0), mSceneState("NONE")
 {
     setSceneRect(0, 0, 1000, 1000);
+
+    mSceneEventHandlers.fill(0,(int)COUNT);
+    mSceneEventHandlers[ITEM] = new ItemEventHandler(this);
+    mSceneEventHandlers[SELECT] = new SelectEventHandler(this);
+    mSceneEventHandlers[RELATION] = new RelationEventHandler(this);
+    setSceneState("S_NONE");
 }
 
 DiagramScene::~DiagramScene()
@@ -11,11 +21,26 @@ DiagramScene::~DiagramScene()
 
 }
 
+void DiagramScene::setSceneState(const QString &newSceneState)
+{
+    mSceneState = newSceneState;
+
+    SceneState mode;
+    if(newSceneState[0] == 'I')
+        mode = ITEM;
+    else if(newSceneState[0] == 'S')
+        mode = SELECT;
+    else if(newSceneState[0] == 'R')
+        mode = RELATION;
+
+    mEventHandler = mSceneEventHandlers.at(mode);
+}
+
 void DiagramScene::saveSceneToFile(const QString &fileName)
 {
     switch(mDiagType)
     {
-    case NONE:
+    case ABSTRACT:
         break;
     case USECASE:
         UseCaseModel *useCaseModel = new UseCaseModel(this);
@@ -29,7 +54,7 @@ void DiagramScene::openSceneFromFile(const QString &fileName)
 {
     switch(mDiagType)
     {
-    case NONE:
+    case ABSTRACT:
         break;
     case USECASE:
         UseCaseModel *useCaseModel = new UseCaseModel(this);
@@ -54,11 +79,16 @@ void DiagramScene::deleteItem(int itemIdToDel)
     }
 }
 
+void DiagramScene::addNewRelation(const QString &type)
+{
+    //NONE
+}
+
 void DiagramScene::addNewItem(const QString &newItemType, const QString &newItemName, const QPointF &newItemPos)
 {
-    switch(mDiagType)
+    switch(getDiagType())
     {
-    case NONE:
+    case ABSTRACT:
         break;
     case USECASE:
         UseCaseItem *newItem = new UseCaseItem(mCountItemsId++, newItemType, newItemName, newItemPos, 0, this);
@@ -68,17 +98,11 @@ void DiagramScene::addNewItem(const QString &newItemType, const QString &newItem
     }
 }
 
-void DiagramScene::addNewRelation(const QString &type)
-{
-    //NONE
-}
-
 void DiagramScene::mouseDoubleClickEvent(QGraphicsSceneMouseEvent *event)
 {
-    if(event->button() == Qt::LeftButton && mItemState != "NONE")
-    {
-        addNewItem(mItemState, "", event->scenePos());
-    }
+    mEventHandler->mouseDoubleClick(event);
+//    if(!event->isAccepted())
+        QGraphicsScene::mouseDoubleClickEvent(event);
 }
 
 void DiagramScene::mousePressEvent(QGraphicsSceneMouseEvent *event)

@@ -29,9 +29,9 @@ void DiagramViewer::initializeDiagramScene(const DiagramsEnum &diagramType, QObj
     setScene(mDiagScene);
 }
 
-void DiagramViewer::setDiagramState(const QString &state)
+void DiagramViewer::setSceneState(const QString &state)
 {
-    mDiagScene->setItemState(state);
+    mDiagScene->setSceneState(state);
 }
 
 void DiagramViewer::saveDiagramSceneToFile(const QString &fileName)

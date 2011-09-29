@@ -14,17 +14,16 @@ public:
     explicit AbstractEventHandler(DiagramScene *parent);
     virtual ~AbstractEventHandler(){}
 
-protected:
+public slots:
     virtual void mouseDoubleClick(QGraphicsSceneMouseEvent *event)=0;
     virtual void mousePress(QGraphicsSceneMouseEvent *event)=0;
     virtual void mouseMove(QGraphicsSceneMouseEvent *event)=0;
     virtual void mouseRelease(QGraphicsSceneMouseEvent *event)=0;
 
+protected:
     DiagramScene *mDiagScene;
 
 signals:
-
-public slots:
 
 };
 
