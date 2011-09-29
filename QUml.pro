@@ -22,7 +22,8 @@ SOURCES += main.cpp\
     usecase_diagram/usecasemodel.cpp \
     diagramviewer.cpp \
     diagramscene.cpp \
-    event_handler/abstracteventhandler.cpp
+    event_handler/abstracteventhandler.cpp \
+    event_handler/itemeventhandler.cpp
 
 HEADERS  += mainwindow.h \
     abstract_diagram/abstractitem.h \
@@ -36,7 +37,10 @@ HEADERS  += mainwindow.h \
     diagramviewer.h \
     qumlenums.h \
     diagramscene.h \
-    event_handler/abstracteventhandler.h
+    event_handler/abstracteventhandler.h \
+    event_handler/itemeventhandler.h
+
+
 
 
 
